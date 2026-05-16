@@ -16,7 +16,8 @@ function figmaAssetResolver() {
   }
 }
 
-const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1] || ''
+const repositoryEnv = process.env.GITHUB_REPOSITORY || ''
+const repositoryName = repositoryEnv.includes('/') ? repositoryEnv.split('/')[1] : repositoryEnv
 const githubPagesBasePath = repositoryName ? `/${repositoryName}/` : '/'
 
 export default defineConfig({
